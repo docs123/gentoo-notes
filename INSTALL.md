@@ -13,7 +13,7 @@ make.conf
 nano /etc/portage/make.conf
 
 USE="bluetooth networkmanager pulseaudio"
-EMERGE_DEFAULT_OPTS="--ask --color --quiet --quiet-build --verbose"
+EMERGE_DEFAULT_OPTS="--ask --color=y --quiet-build --verbose"
 ```
 
 
