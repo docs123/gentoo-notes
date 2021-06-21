@@ -6,6 +6,10 @@
 
 My LiveCD of choice: [Ubuntu 20.04](https://ubuntu.com/download/desktop)
 
+### Classic procedure
+
+Edit later
+
 
 ## Specific configurations
 
@@ -16,7 +20,12 @@ Magic command, displays all *global* USE flags currently enabled
 emerge --info | grep ^USE= | cut -d\" -f2
 ```
 
-make.conf
+or better, with `euse` from `gentoolkit`
+```bash
+euse -a
+```
+
+Personalize `make.conf`
 ```bash
 nano /etc/portage/make.conf
 
@@ -24,21 +33,27 @@ USE="bluetooth networkmanager pulseaudio"
 EMERGE_DEFAULT_OPTS="--ask --ask-enter-invalid --color=y --quiet-build --verbose"
 ```
 
+### Useful packages
+
+```bash
+emerge bash-completion gentoolkit
+```
 
 ### KDE
 
-Enable KDE testing (5.22.1) to be pulled
+Allow KDE testing (5.22.1) to be pulled
 ```bash
 mkdir /etc/portage/package.accept_keywords
 nano /etc/portage/package.accept_keywords/testing
 
-# Try the newest verstion of KDE Plasma
+# Try the newest version of KDE Plasma
 kde-plasma/plasma-desktop
 ```
 
-Merge KDE testing and unmask conficting packages
+Merge `plasma-desktop` and unmask conficting packages
 ```bash
-emerge xorg-x11 plasma-meta --autounmask=y
+emerge xorg-x11 plasma-desktop --autounmask-write
+dispatch-conf
 ```
 
 ---
@@ -53,6 +68,11 @@ Install guides
 + [Monsieurp/Gentoo Linux on ZFS](https://wiki.gentoo.org/wiki/User:Monsieurp/Gentoo_Linux_on_ZFS)
 + [Dell XPS 15 7590](https://wiki.gentoo.org/wiki/User:Bugalo/Dell_XPS_15_7590)
 + [Raspberry Pi4 64 Bit Install](https://wiki.gentoo.org/wiki/Raspberry_Pi4_64_Bit_Install)
+
+EFI/ESP/GPT/MBR/BIOS/UEFI ...
++ [Is there sense in mounting EFI partition at /boot? - Ask Ubuntu](https://askubuntu.com/questions/928161/is-there-sense-in-mounting-efi-partition-at-boot)
++ [EFI System Partition](https://wiki.gentoo.org/wiki/EFI_System_Partition)
++ [Discussion page in Gentoo Handbook — how to use grub2 with ESP](https://wiki.gentoo.org/wiki/Handbook_Talk:AMD64/Full/Installation#improve_suggested_partitions_and_use_of_grub-install)
 
 emerge
 + [Manpage of EMERGE](https://dev.gentoo.org/~zmedico/portage/doc/man/emerge.1.html)
